@@ -6,7 +6,7 @@ from nonebot.matcher import Matcher
 from .draw import draw_pic
 from io import BytesIO
 
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 __plugin_meta__ = PluginMetadata(
     name="BlueArchive Title Generator",
     description="碧蓝档案式标题生成器",
