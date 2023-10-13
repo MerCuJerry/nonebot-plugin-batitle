@@ -1,6 +1,6 @@
 [project]
 name = "nonebot-plugin-batitle"
-version = "0.1.1"
+version = "0.1.2"
 description = "BlueArchive Title Generator"
 authors = [
     {name = "MerCuJerry", email = "mercujerry@gmail.com"},
