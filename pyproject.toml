@@ -1,0 +1,25 @@
+[project]
+name = "nonebot-plugin-batitle"
+version = "0.1.0"
+description = "BlueArchive Title Genenrator"
+authors = [
+    {name = "MerCuJerry", email = "mercujerry@gmail.com"},
+]
+dependencies = [
+    "nonebot2 >= 2.1.0",
+    "nonebot-adapter-onebot>=2.3.1",
+    "pillow >= 10.0.1"
+]
+requires-python = ">=3.11"
+readme = "README.md"
+license = {file = "LICENSE"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[project.urls]
+homepage = "https://github.com/MerCuJerry/nonebot-plugin-blocker"
+
+[tool.pdm.build]
+includes = ["nonebot_plugin_batitle"]

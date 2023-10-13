@@ -1,0 +1,20 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - '*'
+  workflow_dispatch:
+
+jobs:
+  pypi-publish:
+    name: Upload release to PyPI
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: pdm-project/setup-pdm@v3
+      with:
+        python-version: 3.11
+        cache: true
+    - name: Publish distribution to PyPI with PDM
+      run: pdm publish -u "__token__" -P ${{ secrets.PYPI_API_TOKEN }}
