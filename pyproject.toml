@@ -1,7 +1,7 @@
 [project]
 name = "nonebot-plugin-batitle"
 version = "0.1.0"
-description = "BlueArchive Title Genenrator"
+description = "BlueArchive Title Generator"
 authors = [
     {name = "MerCuJerry", email = "mercujerry@gmail.com"},
 ]
@@ -19,7 +19,7 @@ requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
 [project.urls]
-homepage = "https://github.com/MerCuJerry/nonebot-plugin-blocker"
+homepage = "https://github.com/MerCuJerry/nonebot-plugin-batitle"
 
 [tool.pdm.build]
 includes = ["nonebot_plugin_batitle"]

@@ -8,7 +8,7 @@ HALO_PATH = SRC_PATH / "halo.png"
 CROSS_PATH = SRC_PATH / "cross.png"
 
 
-def draw(front: str = "アリス", back: str = "Archive", dx: int = 30, dy: int = 0) -> Image:
+def draw_pic(front: str = "アリス", back: str = "Archive", dx: int = 80, dy: int = 0):
     # consts and calc
     fnt_size = 84
     pic_width = fnt_size * (front.__len__() + back.__len__() + 2)
