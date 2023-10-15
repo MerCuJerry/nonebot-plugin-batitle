@@ -26,7 +26,7 @@ __plugin_meta__ = PluginMetadata(
     },
     extra={
         "version": __version__,
-        "author": "MerCuJerry mercujerry@gmail.com>",
+        "author": "MerCuJerry <mercujerry@gmail.com>",
     },
 )
 
