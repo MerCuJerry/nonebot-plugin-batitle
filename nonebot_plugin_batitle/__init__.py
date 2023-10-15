@@ -1,12 +1,14 @@
-from nonebot import on_startswith
+from nonebot import on_startswith, require
 from nonebot.plugin import PluginMetadata
-from nonebot.adapters.onebot.v11 import MessageSegment
 from nonebot.params import EventPlainText, Startswith
 from nonebot.matcher import Matcher
 from .draw import draw_pic
 from io import BytesIO
+require("nonebot_plugin_saa")
+from nonebot_plugin_saa import MessageFactory, Image
 
-__version__ = "0.1.4"
+
+__version__ = "0.1.5"
 __plugin_meta__ = PluginMetadata(
     name="BlueArchive Title Generator",
     description="碧蓝档案式标题生成器",
@@ -14,7 +16,18 @@ __plugin_meta__ = PluginMetadata(
     type="application",
     homepage="https://github.com/MerCuJerry/nonebot-plugin-batitle",
     config=None,
-    supported_adapters={"~onebot.v11"},
+    supported_adapters={
+        "~onebot.v11",
+        "~onebot.v12",
+        "~kaiheila",
+        "~telegram",
+        "~feishu",
+        "~red",
+    },
+    extra={
+        "version": __version__,
+        "author": "MerCuJerry mercujerry@gmail.com>",
+    },
 )
 
 batitle = ("batitle ", "ba标题 ")
@@ -37,7 +50,8 @@ async def _handler(
         img_bytes: bytes = img.getvalue()
         img_raw.close()
         img.close()
-        await matcher.finish(MessageSegment.image(img_bytes))
+        await MessageFactory(Image(img_bytes)).send()
+        await matcher.finish()
 
     except OSError:
         await matcher.finish("生成失败……请检查字体文件设置是否正确")
