@@ -8,7 +8,7 @@ require("nonebot_plugin_saa")
 from nonebot_plugin_saa import MessageFactory, Image
 
 
-__version__ = "0.1.5"
+__version__ = "0.1.6"
 __plugin_meta__ = PluginMetadata(
     name="BlueArchive Title Generator",
     description="碧蓝档案式标题生成器",
