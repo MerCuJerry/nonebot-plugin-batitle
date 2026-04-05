@@ -1,5 +1,5 @@
 from nonebot import on_startswith, require
-from nonebot.plugin import PluginMetadata
+from nonebot.plugin import PluginMetadata, inherit_supported_adapters
 from nonebot.params import EventPlainText, Startswith
 from nonebot.matcher import Matcher
 from .draw import draw_pic
@@ -8,7 +8,7 @@ require("nonebot_plugin_saa")
 from nonebot_plugin_saa import MessageFactory, Image
 
 
-__version__ = "0.1.6"
+__version__ = "0.1.7"
 __plugin_meta__ = PluginMetadata(
     name="BlueArchive Title Generator",
     description="碧蓝档案式标题生成器",
@@ -16,14 +16,7 @@ __plugin_meta__ = PluginMetadata(
     type="application",
     homepage="https://github.com/MerCuJerry/nonebot-plugin-batitle",
     config=None,
-    supported_adapters={
-        "~onebot.v11",
-        "~onebot.v12",
-        "~kaiheila",
-        "~telegram",
-        "~feishu",
-        "~red",
-    },
+    supported_adapters=inherit_supported_adapters("nonebot_plugin_saa"),
     extra={
         "version": __version__,
         "author": "MerCuJerry <mercujerry@gmail.com>",

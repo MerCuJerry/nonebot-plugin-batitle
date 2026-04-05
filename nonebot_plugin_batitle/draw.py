@@ -26,7 +26,7 @@ def draw_pic(front: str = "アリス", back: str = "Archive", dx: int = 76, dy: 
     dist = pic_height * tan(radians(angle))
     data = (1, tan(radians(angle)), -dist, 0, 1, 0)
     # polygon const
-    mid: tuple(int, int) = (304, 144)
+    mid: tuple[int, int] = (304, 144)
     offset: int = 12
     offset_2: int = 12
     polygon_xy = [
@@ -40,21 +40,21 @@ def draw_pic(front: str = "アリス", back: str = "Archive", dx: int = 76, dy: 
         (mid[0] + offset_2, mid[1] - offset_2),
     ]
     # resize halo
-    halo = halo.resize((250, 250), Image.BICUBIC)
+    halo = halo.resize((250, 250), Image.Resampling.BICUBIC)
     # predraw polygon on cross
     prepaint_pic = Image.new("RGBA", (500, 500), (255, 255, 255, 0))
     prepaint = ImageDraw.Draw(prepaint_pic)
     prepaint.polygon(polygon_xy, fill=white)
     prepaint.polygon(polygon_xy_second, fill=white)
     prepaint.bitmap((0, 0), cross, fill=blue)
-    prepaint_pic = prepaint_pic.resize((250, 250), Image.BICUBIC)
+    prepaint_pic = prepaint_pic.resize((250, 250), Image.Resampling.BICUBIC)
     # predraw front text
     front_pic = Image.new(
         "RGBA", (fnt_size * (front.__len__() + 2), fnt_size * 2), (255, 255, 255, 0)
     )
     prepaint = ImageDraw.Draw(front_pic)
     prepaint.text((0, 0), front, font=fnt_Hans, fill=blue)
-    front_pic = front_pic.transform(front_pic.size, Image.AFFINE, data, Image.BICUBIC)
+    front_pic = front_pic.transform(front_pic.size, Image.Transform.AFFINE, data, Image.Resampling.BICUBIC)
     front_pic = front_pic.crop(front_pic.getbbox())
     # predraw back text
     back_pic = Image.new(
@@ -69,7 +69,7 @@ def draw_pic(front: str = "アリス", back: str = "Archive", dx: int = 76, dy: 
         stroke_width=5,
         stroke_fill=white,
     )
-    back_pic = back_pic.transform(back_pic.size, Image.AFFINE, data, Image.BICUBIC)
+    back_pic = back_pic.transform(back_pic.size, Image.Transform.AFFINE, data, Image.Resampling.BICUBIC)
     back_pic = back_pic.crop(back_pic.getbbox())
     # draw pic
     pic = Image.new("RGBA", (pic_width, pic_height), (255, 255, 255, 0))

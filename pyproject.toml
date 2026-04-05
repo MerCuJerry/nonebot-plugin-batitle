@@ -1,16 +1,16 @@
 [project]
 name = "nonebot-plugin-batitle"
-version = "0.1.6"
+version = "0.1.7"
 description = "BlueArchive Title Generator"
 authors = [
     {name = "MerCuJerry", email = "mercujerry@gmail.com"},
 ]
 dependencies = [
-    "nonebot2 >= 2.1.0",
-    "nonebot-plugin-send-anything-anywhere >= 0.3.2",
-    "pillow <11.0.0, >=9.2.0"
+    "nonebot2 >= 2.5.0",
+    "nonebot-plugin-send-anything-anywhere >= 0.7.1",
+    "pillow >= 11.0.0 "
 ]
-requires-python = ">=3.8,<4.0"
+requires-python = ">=3.10,<4.0"
 readme = "README.md"
 license = {file = "LICENSE"}
 

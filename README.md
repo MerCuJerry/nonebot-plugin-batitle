@@ -17,7 +17,7 @@ _✨ NoneBot 插件 碧蓝档案式标题生成器✨_
 <a href="https://pypi.python.org/pypi/nonebot-plugin-batitle">
     <img src="https://img.shields.io/pypi/v/nonebot-plugin-batitle.svg" alt="pypi">
 </a>
-<img src="https://img.shields.io/badge/python-3.8+-blue.svg" alt="python">
+<img src="https://img.shields.io/badge/python-3.10+-blue.svg" alt="python">
 
 </div>
 
