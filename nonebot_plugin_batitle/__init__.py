@@ -1,22 +1,25 @@
-from nonebot import require
+from nonebot import require, get_plugin_config
 from nonebot.plugin import PluginMetadata, inherit_supported_adapters
 from .draw import draw_pic
 from io import BytesIO
+from pydantic import BaseModel
 from arclet.alconna import Alconna, CommandMeta, Args
 from nepattern import AnyString
 require("nonebot_plugin_alconna")
 from nonebot_plugin_alconna import on_alconna, Match, AlconnaMatch, AlconnaMatcher  # noqa: E402
 from nonebot_plugin_alconna.uniseg import UniMessage, Image, Reply, get_message_id  # noqa: E402
 
+class BAGenConfig(BaseModel):
+    batitle_generator_separator: str = '|' 
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 __plugin_meta__ = PluginMetadata(
     name="BlueArchive Title Generator",
     description="碧蓝档案式标题生成器",
-    usage="batitle 前 后",
+    usage="batitle 前|后",
     type="application",
     homepage="https://github.com/MerCuJerry/nonebot-plugin-batitle",
-    config=None,
+    config=BAGenConfig,
     supported_adapters=inherit_supported_adapters("nonebot_plugin_alconna"),
     extra={
         "version": __version__,
@@ -24,9 +27,16 @@ __plugin_meta__ = PluginMetadata(
     },
 )
 
-batitle = Alconna("batitle", Args["upper", AnyString]["lower", AnyString], meta=CommandMeta(description="生成一个碧蓝档案式的标题"))
-batitle.shortcut("ba标题", {"command": "batitle {*}"})
-batitle_matcher = on_alconna(batitle, block=True, priority=5)
+batitle_matcher = on_alconna(
+    Alconna(
+        ["batitle", "ba标题"],
+        Args["upper", AnyString]["lower", AnyString]
+            .separate(get_plugin_config(BAGenConfig).batitle_generator_separator),
+            meta=CommandMeta(description="生成一个碧蓝档案式的标题")
+    ),
+    block=True,
+    priority=5
+)
 
 @batitle_matcher.handle()
 async def _handler(

@@ -66,9 +66,17 @@ _✨ NoneBot 插件 碧蓝档案式标题生成器✨_
 
 </details>
 
+## 配置项
+
+> 以下配置项可在 `.env.*` 文件中设置，具体参考 [NoneBot 配置方式](https://nonebot.dev/docs/appendices/config)
+### `batitle_generator_separator`
+ - 类型：`str`
+ - 默认：`|`
+ - 说明：插件使用的分隔符
+
 ## 🎉 使用
 ### 指令表
 | 指令 | 权限 | 需要@ | 范围 | 说明 |
 |:-----:|:----:|:----:|:----:|:----:|
-| batitle (前) (后)| 群员 | 否 | 所有 | 使用时去掉括号 |
-| ba标题 (前) (后) | 群员 | 否 | 所有 | 同上 |
+| batitle (前){batitle_generator_separator}(后)| 群员 | 否 | 所有 | 使用时去掉括号 |
+| ba标题 (前){batitle_generator_separator}(后) | 群员 | 否 | 所有 | 同上 |
