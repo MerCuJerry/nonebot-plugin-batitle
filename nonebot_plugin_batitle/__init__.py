@@ -2,7 +2,7 @@ from nonebot import require, get_plugin_config
 from nonebot.plugin import PluginMetadata, inherit_supported_adapters
 from .draw import draw_pic
 from io import BytesIO
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from arclet.alconna import Alconna, CommandMeta, Args
 from nepattern import AnyString
 require("nonebot_plugin_alconna")
@@ -10,9 +10,9 @@ from nonebot_plugin_alconna import on_alconna, Match, AlconnaMatch, AlconnaMatch
 from nonebot_plugin_alconna.uniseg import UniMessage, Image, Reply, get_message_id  # noqa: E402
 
 class BAGenConfig(BaseModel):
-    batitle_generator_separator: str = '|' 
+    separator: str = Field(default='|', alias="batitle_generator_separator", description="碧蓝档案式标题生成器参数使用的分隔符")
 
-__version__ = "0.2.1"
+__version__ = "0.2.1.post1"
 __plugin_meta__ = PluginMetadata(
     name="BlueArchive Title Generator",
     description="碧蓝档案式标题生成器",
@@ -27,11 +27,13 @@ __plugin_meta__ = PluginMetadata(
     },
 )
 
+batitle_generator_config: BAGenConfig = get_plugin_config(BAGenConfig)
+
 batitle_matcher = on_alconna(
     Alconna(
         ["batitle", "ba标题"],
         Args["upper", AnyString]["lower", AnyString]
-            .separate(get_plugin_config(BAGenConfig).batitle_generator_separator),
+            .separate(batitle_generator_config.separator),
             meta=CommandMeta(description="生成一个碧蓝档案式的标题")
     ),
     block=True,
